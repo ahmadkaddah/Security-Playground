@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Misconfiguration - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="matrix.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Security Misconfiguration <span class="blink">_</span></h1>
+    <p>Security Misconfiguration Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>Security Misconfiguration</h2>
+        <p>Security misconfigurations are one of the most common vulnerabilities. They occur when security settings are
+          defined, implemented, or maintained improperly.</p>
+        <p>Examples include leaving default accounts enabled, exposing error messages with sensitive information, or
+          including sensitive information in comments.</p>
+        <p>Try to find the hidden admin panel by examining the page source code.</p>
+        <button class="solution-button" onclick="toggleSolution('misconfig-solution')">Show Solution</button>
+        <div id="misconfig-solution" class="solution-container">
+          <p>View the page source code to find the HTML comment revealing the admin panel URL:</p>
+          <div class="terminal-text">&lt;!-- Admin panel: admin-panel.html --&gt;</div>
+          <p>Navigate to admin-panel.html to access the admin panel.</p>
+        </div>
+      </div>
+
+      <h2>Company Website</h2>
+      <p>Welcome to our company website. This is a public page with general information.</p>
+
+      <div class="form-group">
+        <p>Our company provides the following services:</p>
+        <ul>
+          <li>Web Development</li>
+          <li>Security Consulting</li>
+          <li>Network Infrastructure</li>
+        </ul>
+      </div>
+
+      <div id="misconfig-result" class="result-box">
+      </div>
+
+      <div class="challenge-description">
+        <h3>How to Prevent Security Misconfigurations</h3>
+        <p>To prevent security misconfigurations:</p>
+        <ul>
+          <li>Implement a repeatable hardening process</li>
+          <li>Remove or disable unnecessary features</li>
+          <li>Review and update configurations for all security notes, updates, and patches</li>
+          <li>Segment application architecture properly</li>
+          <li>Send security directives to clients (e.g., Security Headers)</li>
+          <li>Remove sensitive information from comments and metadata</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+
+</body>
+
+</html>

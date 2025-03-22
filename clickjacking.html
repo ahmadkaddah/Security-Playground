@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clickjacking Demo - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="matrix.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Clickjacking Demo <span class="blink">_</span></h1>
+    <p>Clickjacking Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>Clickjacking</h2>
+        <p>Clickjacking is a technique where attackers trick users into clicking on something different from what they
+          perceive. This is typically done by layering transparent elements over legitimate buttons or links.</p>
+        <p>Try to identify what happens when you interact with the demonstration below.</p>
+        <button class="solution-button" onclick="toggleSolution('clickjacking-solution')">Show Solution</button>
+        <div id="clickjacking-solution" class="solution-container">
+          <p>The "Click here to win a prize!" button has a transparent button positioned over it that contains a button
+            to delete your account.</p>
+          <p>When you click the visible button, you're actually clicking the hidden button underneath.</p>
+          <p>This demonstrates why websites should implement frame-busting code and use the X-Frame-Options HTTP header
+            to prevent their content from being embedded in iframes on other sites.</p>
+        </div>
+      </div>
+
+      <h2>Win a Prize!</h2>
+      <div class="clickjacking-demo">
+        <div id="clickjacking-overlay" class="overlay-container">
+          <button class="prize-button">Click here to win a prize!</button>
+          <button id="hidden-button" class="hidden-button">Delete Account</button>
+        </div>
+      </div>
+
+      <div id="clickjacking-result" class="result-box">
+      </div>
+
+      <div class="challenge-description">
+        <h3>How to Prevent Clickjacking</h3>
+        <p>To prevent clickjacking attacks:</p>
+        <ul>
+          <li>Implement frame-busting JavaScript code that prevents your site from being framed</li>
+          <li>Use the X-Frame-Options HTTP header (DENY or SAMEORIGIN)</li>
+          <li>Use the Content-Security-Policy header with frame-ancestors directive</li>
+          <li>Implement user interaction confirmation for sensitive actions</li>
+        </ul>
+        <div class="code-example">
+          <p>Example X-Frame-Options header:</p>
+          <pre><code>X-Frame-Options: DENY</code></pre>
+          <p>Example Content-Security-Policy:</p>
+          <pre><code>Content-Security-Policy: frame-ancestors 'none';</code></pre>
+          <p>Example frame-busting code:</p>
+          <pre><code>if (window.self !== window.top) {
+  window.top.location = window.self.location;
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="matrix-canvas" class="matrix-background"></canvas>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+</body>
+
+</html>

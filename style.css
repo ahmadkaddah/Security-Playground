@@ -1,0 +1,487 @@
+:root {
+  --main-bg-color: #0a0a0a;
+  --secondary-bg-color: #111;
+  --text-color: #0f0;
+  --highlight-color: #00ff41;
+  --accent-color: #008f11;
+  --danger-color: #ff0000;
+  --header-font: 'Courier New', monospace;
+  --body-font: 'Consolas', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  font-family: var(--body-font);
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  flex: 1;
+}
+
+header {
+  background-color: var(--secondary-bg-color);
+  padding: 20px 0;
+  border-bottom: 1px solid var(--accent-color);
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-family: var(--header-font);
+  text-align: center;
+  color: var(--highlight-color);
+  text-shadow: 0 0 5px var(--highlight-color);
+  letter-spacing: 2px;
+  animation: glow 2s ease-in-out infinite;
+}
+
+header p {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+nav {
+  margin: 20px 0;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+nav ul li a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--secondary-bg-color);
+  color: var(--highlight-color);
+  text-decoration: none;
+  border: 1px solid var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: var(--accent-color);
+  color: var(--main-bg-color);
+  box-shadow: 0 0 10px var(--highlight-color);
+  transform: translateY(-2px);
+}
+
+.challenge-container {
+  background-color: var(--secondary-bg-color);
+  padding: 20px;
+  border: 1px solid var(--accent-color);
+  margin-bottom: 30px;
+}
+
+.challenge-description {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(0, 143, 17, 0.1);
+  border-left: 3px solid var(--accent-color);
+}
+
+h2 {
+  color: var(--highlight-color);
+  margin-bottom: 15px;
+  font-family: var(--header-font);
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #1a1a1a;
+  border: 1px solid var(--accent-color);
+  color: var(--text-color);
+  font-family: var(--body-font);
+}
+
+button {
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--main-bg-color);
+  border: none;
+  cursor: pointer;
+  font-family: var(--header-font);
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--highlight-color);
+  box-shadow: 0 0 10px var(--highlight-color);
+}
+
+.result-box {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(0, 143, 17, 0.1);
+  border: 1px dashed var(--accent-color);
+  min-height: 50px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+  background-color: var(--secondary-bg-color);
+  border-top: 1px solid var(--accent-color);
+  font-size: 0.9em;
+}
+
+.home-challenges {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px var(--highlight-color); }
+  50% { text-shadow: 0 0 15px var(--highlight-color), 0 0 30px var(--highlight-color); }
+  100% { text-shadow: 0 0 5px var(--highlight-color); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.challenge-card {
+  background-color: var(--secondary-bg-color);
+  border: 1px solid var(--accent-color);
+  padding: 20px;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.home-challenges .challenge-card:nth-child(1) { animation-delay: 0.1s; }
+.home-challenges .challenge-card:nth-child(2) { animation-delay: 0.2s; }
+.home-challenges .challenge-card:nth-child(3) { animation-delay: 0.3s; }
+.home-challenges .challenge-card:nth-child(4) { animation-delay: 0.4s; }
+.home-challenges .challenge-card:nth-child(5) { animation-delay: 0.5s; }
+
+button {
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--main-bg-color);
+  border: none;
+  cursor: pointer;
+  font-family: var(--header-font);
+  font-weight: bold;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+  transition: left 0.5s ease;
+  z-index: 1;
+}
+
+button:hover::after {
+  left: 100%;
+}
+
+.challenge-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+  background-color: rgba(0, 143, 17, 0.1);
+}
+
+.challenge-card a {
+  display: inline-block;
+  margin-top: 15px;
+  color: var(--highlight-color);
+  text-decoration: none;
+  position: relative;
+}
+
+.challenge-card a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--highlight-color);
+  transition: width 0.3s ease;
+}
+
+.challenge-card a:hover::after {
+  width: 100%;
+}
+
+.terminal-text {
+  font-family: 'Courier New', monospace;
+  color: var(--highlight-color);
+  background-color: #111;
+  padding: 15px;
+  margin: 15px 0;
+  border-left: 3px solid var(--accent-color);
+  overflow-x: auto;
+  position: relative;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.blink {
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+.challenge-card h3 {
+  color: var(--highlight-color);
+  margin-bottom: 10px;
+}
+
+.challenge-card a {
+  display: inline-block;
+  margin-top: 15px;
+  color: var(--highlight-color);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent-color);
+}
+
+.challenge-card a:hover {
+  color: var(--accent-color);
+}
+
+.success-message {
+  color: var(--highlight-color);
+  background-color: rgba(0, 143, 17, 0.2);
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid var(--accent-color);
+  display: none;
+}
+
+.error-message {
+  color: var(--danger-color);
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid var(--danger-color);
+  display: none;
+}
+
+.overlay-demo {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border: 1px solid var(--accent-color);
+  margin: 20px 0;
+}
+
+.fake-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px 30px;
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.7;
+}
+
+.hidden-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.terminal-text {
+  font-family: 'Courier New', monospace;
+  color: var(--highlight-color);
+  background-color: #111;
+  padding: 15px;
+  margin: 15px 0;
+  border-left: 3px solid var(--accent-color);
+  overflow-x: auto;
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .home-challenges {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.solution-button {
+  margin-top: 15px;
+  background-color: #333;
+  color: var(--highlight-color);
+  border: 1px solid var(--accent-color);
+  padding: 8px 15px;
+  cursor: pointer;
+  font-family: var(--header-font);
+  transition: all 0.3s ease;
+}
+
+.solution-button:hover {
+  background-color: var(--secondary-bg-color);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+}
+
+.solution-container {
+  display: none;
+  margin-top: 15px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px dashed var(--accent-color);
+  border-radius: 3px;
+}
+
+.solution-container .terminal-text {
+  margin-top: 10px;
+}
+
+#matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.15;
+}
+
+.clickjacking-demo {
+  position: relative;
+  width: 300px;
+  height: 100px;
+  margin: 20px auto;
+}
+
+.overlay-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.prize-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.hidden-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0.01;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  position: relative;
+}
+
+.matrix-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+canvas#matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}

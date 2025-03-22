@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Directory Listing - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="matrix.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Directory Listing <span class="blink">_</span></h1>
+    <p>Directory Listing Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>Directory Listing Vulnerability</h2>
+        <p>Directory listing vulnerabilities occur when web servers are configured to display the contents of
+          directories when no index file is present. This can expose sensitive files and information to attackers.</p>
+        <p>Try to find the hidden directory on this server that contains sensitive files.</p>
+        <button class="solution-button" onclick="toggleSolution('dirlisting-solution')">Show Solution</button>
+        <div id="dirlisting-solution" class="solution-container">
+          <p>The hidden directory is located at:</p>
+          <div class="terminal-text">/hidden/</div>
+          <p>Navigate to this URL to see the directory listing and access the secret files.</p>
+        </div>
+      </div>
+
+      <h2>Company Website Files</h2>
+      <p>Below are the public files available on our website:</p>
+
+      <div class="terminal-text">
+        /index.html<br>
+        /about.html<br>
+        /contact.html<br>
+        /images/<br>
+        /css/<br>
+        /js/
+      </div>
+
+      <div id="dirlisting-result" class="result-box">
+        <p>Can you find the hidden directory that contains sensitive files?</p>
+        <div class="form-group">
+          <input type="text" id="directory-input" placeholder="Enter the hidden directory path">
+          <button onclick="checkDirectory()">Check</button>
+        </div>
+      </div>
+
+      <div class="challenge-description">
+        <h3>How to Prevent Directory Listing Vulnerabilities</h3>
+        <p>To prevent directory listing vulnerabilities:</p>
+        <ul>
+          <li>Disable directory listing in web server configuration</li>
+          <li>Add index files to all directories</li>
+          <li>Use .htaccess files to restrict access</li>
+          <li>Implement proper access controls</li>
+          <li>Store sensitive files outside the web root</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+
+  <script>
+    function checkDirectory() {
+      const directoryInput = document.getElementById('directory-input').value.trim();
+      const resultBox = document.getElementById('dirlisting-result');
+
+      if (directoryInput === '/hidden/' || directoryInput === 'hidden/' || directoryInput === 'hidden') {
+        resultBox.innerHTML = `
+          <div class="success-message" style="display:block;">
+            Correct! You found the hidden directory.
+          </div>
+          <div class="terminal-text">
+            Index of /hidden/<br>
+            <br>
+            [DIR] ../<br>
+            [FILE] secret1.txt - 2KB - "Employee salary information"<br>
+            [FILE] secret2.txt - 1KB - "Database credentials"<br>
+            [FILE] admin_notes.txt - 3KB - "Server configuration details"<br>
+            [FILE] backup.sql - 15KB - "Database backup"
+          </div>
+          <p>In a real scenario, this information could be used by attackers to access sensitive data or systems.</p>
+        `;
+      } else {
+        resultBox.innerHTML = `
+          <div class="error-message" style="display:block;">
+            Directory not found. Try again!
+          </div>
+          <div class="form-group">
+            <input type="text" id="directory-input" placeholder="Enter the hidden directory path">
+            <button onclick="checkDirectory()">Check</button>
+          </div>
+        `;
+      }
+    }
+
+    function toggleSolution(solutionId) {
+      const solutionElement = document.getElementById(solutionId);
+      if (solutionElement.style.display === 'block') {
+        solutionElement.style.display = 'none';
+      } else {
+        solutionElement.style.display = 'block';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const solutions = document.querySelectorAll('.solution-container');
+      solutions.forEach(solution => {
+        solution.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+Server Configuration Notes
+
+Web Server: Apache 2.4.41
+PHP Version: 7.4.3
+MySQL Version: 8.0.19
+
+Firewall Rules:
+- Allow SSH from office IP range only (192.168.1.0/24)
+- Allow HTTP/HTTPS from anywhere
+- Block all other incoming traffic
+
+TODO:
+- Update SSL certificates (expires in 2 weeks)
+- Apply security patches to Apache
+- Change default admin password
+- Enable two-factor authentication

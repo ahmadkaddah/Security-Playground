@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Security Playground <span class="blink">_</span></h1>
+    <p>Learn about web security vulnerabilities through interactive examples</p>
+  </header>
+
+  <div class="container">
+    <div class="challenge-description">
+      <h2>Welcome to the Security Playground</h2>
+      <p>This site demonstrates common web security vulnerabilities for educational purposes only. Try to solve each
+        challenge by thinking like a hacker!</p>
+      <p>Each challenge includes a "Show Solution" button that you can click if you get stuck. Try to solve the
+        challenges on your own first!</p>
+      <p>Select a challenge below to get started:</p>
+    </div>
+
+    <div class="home-challenges">
+      <div class="challenge-card">
+        <h3>XSS Challenge</h3>
+        <p>Learn about Cross-Site Scripting by injecting JavaScript into a vulnerable comment form.</p>
+        <a href="xss.html">Start Challenge →</a>
+      </div>
+
+      <div class="challenge-card">
+        <h3>SQL Injection Challenge</h3>
+        <p>Bypass authentication by exploiting a vulnerable login form with SQL injection.</p>
+        <a href="sqli.html">Start Challenge →</a>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Clickjacking Demo</h3>
+        <p>See how attackers can trick users into clicking hidden elements using transparent overlays.</p>
+        <a href="clickjacking.html">Start Challenge →</a>
+      </div>
+
+      <div class="challenge-card">
+        <h3>CSRF Simulation</h3>
+        <p>Understand how Cross-Site Request Forgery attacks can make users perform unwanted actions.</p>
+        <a href="csrf.html">Start Challenge →</a>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Weak Authentication</h3>
+        <p>Exploit a system with hardcoded credentials stored in client-side code.</p>
+        <a href="auth.html">Start Challenge →</a>
+      </div>
+
+      <div class="challenge-card">
+        <h3>IDOR Challenge</h3>
+        <p>Access unauthorized resources by manipulating object references in URLs.</p>
+        <a href="idor.html">Start Challenge →</a>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Security Misconfiguration</h3>
+        <p>Discover hidden information through security misconfigurations in the application.</p>
+        <a href="misconfig.html">Start Challenge →</a>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Directory Listing</h3>
+        <p>Explore how directory listing vulnerabilities expose sensitive files and folders.</p>
+        <a href="dirlisting.html">Start Challenge →</a>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Weak Password</h3>
+        <p>Learn how easily weak passwords can be guessed by attackers.</p>
+        <a href="weakpass.html">Start Challenge →</a>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Base64 Hidden Flag</h3>
+        <p>Decode Base64-encoded information to reveal hidden messages.</p>
+        <a href="base64.html">Start Challenge →</a>
+      </div>
+
+      <div class="challenge-card">
+        <h3>CAPTCHA Bypass</h3>
+        <p>Bypass a simple CAPTCHA implementation to understand its weaknesses.</p>
+        <a href="captcha.html">Start Challenge →</a>
+      </div>
+    </div>
+
+    <div class="terminal-text">
+      $ cat disclaimer.txt<br>
+      This website is for educational purposes only. The vulnerabilities demonstrated here should never be exploited on
+      real websites without explicit permission.
+    </div>
+  </div>
+
+  <canvas id="matrix-canvas" class="matrix-background"></canvas>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="matrix.js"></script>
+</body>
+
+</html>

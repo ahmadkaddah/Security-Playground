@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAPTCHA Bypass - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="matrix.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>CAPTCHA Bypass <span class="blink">_</span></h1>
+    <p>CAPTCHA Bypass Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>CAPTCHA Bypass</h2>
+        <p>CAPTCHAs are designed to distinguish between humans and automated bots. However, poorly implemented CAPTCHAs
+          can be bypassed, allowing automated attacks.</p>
+        <p>Try to bypass the CAPTCHA below by examining the page's JavaScript.</p>
+        <button class="solution-button" onclick="toggleSolution('captcha-solution')">Show Solution</button>
+        <div id="captcha-solution" class="solution-container">
+          <p>Inspect the page's JavaScript to find the CAPTCHA answer validation:</p>
+          <div class="terminal-text">if (captchaInput === captchaAnswer) // where captchaAnswer = "4"</div>
+          <p>Enter "4" as the CAPTCHA answer to bypass it.</p>
+          <p>Alternatively, you could modify the JavaScript using browser developer tools to bypass the validation
+            entirely.</p>
+        </div>
+      </div>
+
+      <h2>Protected Form</h2>
+      <p>This form is protected by a simple CAPTCHA. Complete it to access the protected content.</p>
+
+      <div class="form-group">
+        <div class="captcha-container" style="background-color: #111; padding: 15px; margin-bottom: 15px;">
+          <p>CAPTCHA: What is 2 + 2?</p>
+          <input type="text" id="captcha-input" placeholder="Enter the answer">
+        </div>
+        <input type="text" id="username-input" placeholder="Username">
+        <input type="password" id="password-input" placeholder="Password">
+        <button onclick="checkCaptcha()">Submit</button>
+      </div>
+
+      <div id="captcha-result" class="result-box">
+      </div>
+
+      <div class="challenge-description">
+        <h3>How to Implement Secure CAPTCHAs</h3>
+        <p>To implement secure CAPTCHAs:</p>
+        <ul>
+          <li>Use server-side validation, not client-side</li>
+          <li>Implement modern CAPTCHA solutions (like reCAPTCHA)</li>
+          <li>Use multiple layers of protection</li>
+          <li>Implement rate limiting</li>
+          <li>Regularly update CAPTCHA mechanisms</li>
+          <li>Consider accessibility for all users</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+
+  <script>
+    const captchaAnswer = "4";
+
+    function checkCaptcha() {
+      const captchaInput = document.getElementById('captcha-input').value;
+      const resultBox = document.getElementById('captcha-result');
+
+      if (captchaInput === captchaAnswer) {
+        resultBox.innerHTML = `
+          <div class="success-message" style="display:block;">
+            CAPTCHA Bypassed! You've successfully bypassed the CAPTCHA.
+          </div>
+          <div class="terminal-text">
+            Protected content revealed:<br>
+            Server backup schedule: Every Sunday at 2 AM<br>
+            Admin email: admin@example.com
+          </div>
+          <p>This demonstrates why CAPTCHAs should never be validated client-side, as the answer can be found in the JavaScript code.</p>
+        `;
+      } else {
+        resultBox.innerHTML = `
+          <div class="error-message" style="display:block;">
+            Incorrect CAPTCHA. Try examining the page's JavaScript!
+          </div>
+        `;
+      }
+    }
+  </script>
+</body>
+
+</html>

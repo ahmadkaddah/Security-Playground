@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weak Authentication - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Weak Authentication <span class="blink">_</span></h1>
+    <p>Weak Authentication Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>Weak Authentication</h2>
+        <p>Weak authentication vulnerabilities occur when applications use insecure methods to verify user identity.
+          This includes hardcoded credentials, weak password policies, or client-side authentication.</p>
+        <p>Try to find the admin password by examining the source code.</p>
+        <button class="solution-button" onclick="toggleSolution('auth-solution')">Show Solution</button>
+        <div id="auth-solution" class="solution-container">
+          <p>The password is hardcoded in the JavaScript file (script.js):</p>
+          <div class="terminal-text">const secretPass = 'admin123';</div>
+          <p>This demonstrates why authentication should never be performed client-side, as anyone can view the source
+            code and find hardcoded credentials.</p>
+        </div>
+      </div>
+
+      <h2>Admin Panel Login</h2>
+      <div class="form-group">
+        <input type="text" value="admin" disabled placeholder="Username">
+        <input type="password" id="auth-password" placeholder="Password">
+        <button onclick="checkAuth()">Login</button>
+      </div>
+
+      <div id="auth-result" class="result-box">
+      </div>
+
+      <div class="challenge-description">
+        <h3>How to Prevent Weak Authentication</h3>
+        <p>To prevent weak authentication vulnerabilities:</p>
+        <ul>
+          <li>Never store credentials in client-side code</li>
+          <li>Implement proper server-side authentication</li>
+          <li>Use strong password policies</li>
+          <li>Implement multi-factor authentication</li>
+          <li>Use secure session management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+</body>
+
+</html>

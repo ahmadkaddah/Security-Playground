@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSRF Simulation - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>CSRF Simulation <span class="blink">_</span></h1>
+    <p>Cross-Site Request Forgery Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>Cross-Site Request Forgery (CSRF)</h2>
+        <p>CSRF is an attack that forces authenticated users to execute unwanted actions on a web application in which
+          they're currently authenticated. The attacker tricks the user's browser into making requests to a site without
+          their knowledge.</p>
+        <p>Try to identify what happens when you interact with the form below.</p>
+        <button class="solution-button" onclick="toggleSolution('csrf-solution')">Show Solution</button>
+        <div id="csrf-solution" class="solution-container">
+          <p>Click the "Click here to claim your prize!" button.</p>
+          <p>This simulates a CSRF attack where a malicious website tricks you into performing an action (in this case,
+            transferring money) on another site where you're already authenticated.</p>
+          <p>The form contains hidden fields that specify the recipient and amount, and lacks a CSRF token that would
+            prevent this attack.</p>
+        </div>
+      </div>
+
+      <h2>Malicious Site Simulation</h2>
+      <div class="form-group">
+        <form id="csrf-form">
+          <input type="hidden" name="recipient" value="attacker@evil.com">
+          <input type="hidden" name="amount" value="1000">
+          <input type="hidden" name="account" value="checking">
+          <button type="button" onclick="simulateTransfer()">Click here to claim your prize!</button>
+        </form>
+      </div>
+
+      <div id="csrf-result" class="result-box">
+      </div>
+
+      <div class="challenge-description">
+        <h3>How to Prevent CSRF</h3>
+        <p>Websites can protect against CSRF by implementing:</p>
+        <ul>
+          <li>CSRF tokens - unique, secret, unpredictable values for each user session</li>
+          <li>Same-site cookies</li>
+          <li>Checking the Referer header</li>
+          <li>Requiring re-authentication for sensitive actions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+</body>
+
+</html>

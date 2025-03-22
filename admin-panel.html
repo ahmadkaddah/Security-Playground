@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="matrix.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Admin Panel <span class="blink">_</span></h1>
+    <p>Restricted Area</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="misconfig.html">Back to Challenge</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="success-message" style="display:block;">
+        <h2>Congratulations!</h2>
+        <p>You found the hidden admin panel through a security misconfiguration (exposed URL in HTML comments).</p>
+        <p>In a real application, this could give attackers access to sensitive administrative functions.</p>
+      </div>
+
+      <div class="terminal-text">
+        === ADMIN PANEL ===<br>
+        Users: 5<br>
+        Latest backup: 2023-04-15<br>
+        System status: Online<br>
+        <br>
+        Database connection string: "mysql://admin:db_password_123@localhost/company_db"
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+</body>
+
+</html>

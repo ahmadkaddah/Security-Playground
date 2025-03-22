@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base64 Hidden Flag - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="matrix.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Base64 Hidden Flag <span class="blink">_</span></h1>
+    <p>Base64 Encoding Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>Base64 Encoding</h2>
+        <p>Base64 is an encoding scheme used to represent binary data in an ASCII string format. It's often used to
+          transmit data over media that are designed for text.</p>
+        <p>However, Base64 is not encryption - it's just encoding. It can be easily decoded, making it unsuitable for
+          hiding sensitive information.</p>
+        <p>Try to find and decode the hidden Base64 message in this page's source code.</p>
+        <button class="solution-button" onclick="toggleSolution('base64-solution')">Show Solution</button>
+        <div id="base64-solution" class="solution-container">
+          <p>View the page source to find the Base64-encoded string in the HTML comment:</p>
+          <div class="terminal-text">ZmxhZ3t5b3UtZGVjb2RlZC10aGlzLXJlYWxseX0=</div>
+          <p>When decoded, it reveals: "flag{you-decoded-this-really}"</p>
+        </div>
+      </div>
+
+      <h2>Decode the Hidden Flag</h2>
+      <p>There's a Base64-encoded flag hidden in this page. Can you find and decode it?</p>
+
+      <div class="form-group">
+        <input type="text" id="base64-input" placeholder="Enter the decoded flag">
+        <button onclick="checkBase64Flag()">Submit Flag</button>
+      </div>
+
+      <div id="base64-result" class="result-box">
+      </div>
+
+      <div class="challenge-description">
+        <h3>How to Properly Handle Sensitive Data</h3>
+        <p>To properly handle sensitive data:</p>
+        <ul>
+          <li>Never rely on encoding (like Base64) for security</li>
+          <li>Use proper encryption for sensitive data</li>
+          <li>Implement secure key management</li>
+          <li>Use HTTPS for data transmission</li>
+          <li>Apply the principle of least privilege</li>
+          <li>Regularly audit and rotate credentials</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+
+  <script>
+    function checkBase64Flag() {
+      const flagInput = document.getElementById('base64-input').value.trim();
+      const resultBox = document.getElementById('base64-result');
+
+      if (flagInput === 'flag{you-decoded-this-really}') {
+        resultBox.innerHTML = `
+          <div class="success-message" style="display:block;">
+            Correct! You successfully decoded the Base64 message.
+          </div>
+          <div class="terminal-text">
+            Original Base64: ZmxhZ3t5b3UtZGVjb2RlZC10aGlzLXJlYWxseX0=<br>
+            Decoded: flag{you-decoded-this-really}
+          </div>
+          <p>This demonstrates why Base64 encoding should never be used to hide sensitive information.</p>
+        `;
+      } else {
+        resultBox.innerHTML = `
+          <div class="error-message" style="display:block;">
+            Incorrect flag. Try looking at the page source code for a Base64-encoded string.
+          </div>
+        `;
+      }
+    }
+  </script>
+</body>
+
+</html>

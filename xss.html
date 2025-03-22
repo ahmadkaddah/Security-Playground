@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XSS Challenge - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>XSS Challenge <span class="blink">_</span></h1>
+    <p>Cross-Site Scripting Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>Cross-Site Scripting (XSS)</h2>
+        <p>XSS attacks allow attackers to inject client-side scripts into web pages viewed by other users. This can be
+          used to steal cookies, session tokens, or other sensitive information.</p>
+        <p>Try entering something in the comment box below that will execute JavaScript code.</p>
+        <button class="solution-button" onclick="toggleSolution('xss-solution')">Show Solution</button>
+        <div id="xss-solution" class="solution-container">
+          <p>Enter the following code in the comment box:</p>
+          <div class="terminal-text">&lt;script&gt;alert('XSS');&lt;/script&gt;</div>
+          <p>This will execute JavaScript that creates a popup alert, demonstrating that the site is vulnerable to XSS
+            attacks.</p>
+        </div>
+      </div>
+
+      <h2>Comment Section</h2>
+      <div class="form-group">
+        <textarea id="comment-input" placeholder="Enter your comment here..." rows="4"></textarea>
+        <button onclick="submitComment()">Post Comment</button>
+      </div>
+
+      <h3>Comments:</h3>
+      <div id="comment-display" class="result-box">
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+</body>
+
+</html>

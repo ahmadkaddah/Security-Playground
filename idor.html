@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IDOR Challenge - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="matrix.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>IDOR Challenge <span class="blink">_</span></h1>
+    <p>Insecure Direct Object Reference Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>Insecure Direct Object Reference (IDOR)</h2>
+        <p>IDOR vulnerabilities occur when an application exposes a reference to an internal implementation object, such
+          as a file, directory, or database key. Attackers can manipulate these references to access unauthorized data.
+        </p>
+        <p>In this challenge, try to access files you shouldn't have permission to view by manipulating the URL
+          parameter.</p>
+        <button class="solution-button" onclick="toggleSolution('idor-solution')">Show Solution</button>
+        <div id="idor-solution" class="solution-container">
+          <p>Change the file parameter in the URL to access different files:</p>
+          <div class="terminal-text">?file=secret1.txt → ?file=admin_notes.txt</div>
+          <p>This demonstrates why applications should always validate user input and check authorization before
+            providing access to resources.</p>
+        </div>
+      </div>
+
+      <h2>File Download System</h2>
+      <p>You are logged in as a regular user. You can download your own file below:</p>
+
+      <div class="form-group">
+        <a href="javascript:downloadFile('secret1.txt')" class="download-link">Download My File (secret1.txt)</a>
+      </div>
+
+      <div id="idor-result" class="result-box">
+      </div>
+
+      <div class="challenge-description">
+        <h3>How to Prevent IDOR Vulnerabilities</h3>
+        <p>To prevent IDOR vulnerabilities:</p>
+        <ul>
+          <li>Avoid exposing direct references to internal objects</li>
+          <li>Use indirect references that are mapped on the server side</li>
+          <li>Implement proper access control checks for each request</li>
+          <li>Validate that the user has permission to access the requested resource</li>
+          <li>Use session-based or user-specific tokens for resource access</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+
+  <script>
+    const files = {
+      'secret1.txt': {
+        content: 'This is your personal file. Nothing interesting here.',
+        authorized: true
+      },
+      'admin_notes.txt': {
+        content: 'CONFIDENTIAL: Admin password is "supersecretadmin". DO NOT SHARE!',
+        authorized: false
+      },
+      'user_list.txt': {
+        content: 'User database: admin, john, sarah, mike - All with default passwords!',
+        authorized: false
+      }
+    };
+
+    function downloadFile(fileName) {
+      const resultBox = document.getElementById('idor-result');
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const fileParam = urlParams.get('file');
+
+      if (fileParam) {
+        fileName = fileParam;
+      }
+
+      if (files[fileName]) {
+        if (!files[fileName].authorized) {
+          resultBox.innerHTML = '<div class="success-message" style="display:block;">IDOR Vulnerability Exploited! You accessed a file you shouldn\'t have permission to view.</div>';
+        }
+        resultBox.innerHTML += `<div class="terminal-text">File: ${fileName}<br><br>${files[fileName].content}</div>`;
+      } else {
+        resultBox.innerHTML = '<div class="error-message" style="display:block;">File not found. Try a different file name.</div>';
+      }
+
+      if (!fileParam) {
+        const newUrl = window.location.pathname + '?file=' + fileName;
+        window.history.pushState({}, '', newUrl);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const fileParam = urlParams.get('file');
+
+      if (fileParam) {
+        downloadFile(fileParam);
+      }
+    });
+  </script>
+</body>
+
+</html>

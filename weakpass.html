@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weak Password - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="matrix.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Weak Password <span class="blink">_</span></h1>
+    <p>Weak Password Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>Weak Password Vulnerability</h2>
+        <p>Weak passwords are one of the most common security vulnerabilities. They can be easily guessed or cracked
+          using brute force attacks or common password lists.</p>
+        <p>Try to guess the admin password for this system. It's a commonly used weak password.</p>
+        <button class="solution-button" onclick="toggleSolution('weakpass-solution')">Show Solution</button>
+        <div id="weakpass-solution" class="solution-container">
+          <p>The password is one of the most common weak passwords:</p>
+          <div class="terminal-text">123456</div>
+          <p>This demonstrates why using common or simple passwords is dangerous.</p>
+        </div>
+      </div>
+
+      <h2>Admin Login</h2>
+      <div class="form-group">
+        <input type="text" value="admin" disabled placeholder="Username">
+        <input type="password" id="weak-password" placeholder="Password">
+        <button onclick="checkWeakPassword()">Login</button>
+      </div>
+
+      <div id="weakpass-result" class="result-box">
+      </div>
+
+      <div class="challenge-description">
+        <h3>How to Prevent Weak Password Vulnerabilities</h3>
+        <p>To prevent weak password vulnerabilities:</p>
+        <ul>
+          <li>Implement strong password policies</li>
+          <li>Require minimum password length (at least 12 characters)</li>
+          <li>Require a mix of uppercase, lowercase, numbers, and special characters</li>
+          <li>Check passwords against lists of commonly used or compromised passwords</li>
+          <li>Implement multi-factor authentication</li>
+          <li>Use password managers to generate and store complex passwords</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+
+  <script>
+    const secretPass = '123456';
+
+    function checkWeakPassword() {
+      const passwordInput = document.getElementById('weak-password').value;
+      const resultBox = document.getElementById('weakpass-result');
+
+      if (passwordInput === secretPass) {
+        resultBox.innerHTML = `
+          <div class="success-message" style="display:block;">
+            Correct! You guessed a weak password.
+          </div>
+          <div class="terminal-text">
+            Password: "${passwordInput}" is one of the most commonly used passwords.<br>
+            In 2022, it was still #1 on the list of most common passwords.
+          </div>
+          <p>This demonstrates why using common passwords is dangerous. Attackers often try these first.</p>
+        `;
+      } else {
+        resultBox.innerHTML = `
+          <div class="error-message" style="display:block;">
+            Incorrect password. Try a common weak password!
+          </div>
+        `;
+      }
+    }
+  </script>
+</body>
+
+</html>

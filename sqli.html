@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Injection Challenge - Security Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>SQL Injection Challenge <span class="blink">_</span></h1>
+    <p>SQL Injection Vulnerability Demo</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="challenge-container">
+      <div class="challenge-description">
+        <h2>SQL Injection (SQLi)</h2>
+        <p>SQL Injection is a code injection technique that exploits vulnerabilities in applications that interact with
+          databases. Attackers can insert malicious SQL statements that can read, modify, or delete data.</p>
+        <p>Try to bypass the login by entering SQL code that will make the WHERE clause always evaluate to true.</p>
+        <button class="solution-button" onclick="toggleSolution('sqli-solution')">Show Solution</button>
+        <div id="sqli-solution" class="solution-container">
+          <p>Enter anything in the username field and the following in the password field:</p>
+          <div class="terminal-text">anything' OR '1'='1</div>
+          <p>This SQL injection attack modifies the query to always return true, bypassing the authentication check.</p>
+        </div>
+      </div>
+
+      <h2>Admin Login</h2>
+      <div class="form-group">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="checkLogin()">Login</button>
+      </div>
+
+      <div id="sql-result" class="result-box">
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made by B!NKxD7 — For educational purposes only.
+  </footer>
+</body>
+
+</html>
